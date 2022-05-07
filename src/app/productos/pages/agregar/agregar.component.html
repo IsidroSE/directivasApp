@@ -14,7 +14,11 @@
         </div>
 
         <div class="col-auto">
-            <span class="form-text" *ngIf="tieneError('nombre')" error-msg color="pink">
+            <span 
+                *ngIf="tieneError('nombre')" 
+                error-msg 
+                color="pink"
+                mensaje="un error de prueba">
                 Este campo es requerido
             </span>
         </div>

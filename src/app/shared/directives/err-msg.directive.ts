@@ -10,16 +10,25 @@ export class ErrMsgDirective implements OnInit {
   @Input()
   color: string = "red";
 
+  @Input()
+  mensaje: string = "Placeholder";
+
   constructor( private elemento: ElementRef<HTMLElement> ) {
     this.htmlElement = elemento;
   }
 
   ngOnInit(): void {
     this.setColor();
+    this.setMensaje();
   }
 
   setColor(): void {
     this.htmlElement.nativeElement.style.color = this.color;
+    this.htmlElement.nativeElement.classList.add('form-text');
+  }
+
+  setMensaje(): void {
+    this.htmlElement.nativeElement.innerHTML = this.mensaje;
   }
 
 }

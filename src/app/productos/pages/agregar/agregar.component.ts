@@ -4,10 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styles: [
-  ]
+  styles: [`
+    
+  `]
 })
 export class AgregarComponent implements OnInit {
+
+  errorMSg: string = "El campo es obligatorio."
 
   form: FormGroup = this.fb.group({
     nombre: [ '', Validators.required ]
