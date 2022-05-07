@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[error-msg]'
@@ -29,6 +29,14 @@ export class ErrMsgDirective implements OnInit, OnChanges {
       this.htmlElement.nativeElement.classList.remove('hidden');
     }
   }
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight('yellow');
+  }
+  
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight('');
+  }  
 
   constructor( private elemento: ElementRef<HTMLElement> ) {
     this.htmlElement = elemento;
@@ -61,6 +69,10 @@ export class ErrMsgDirective implements OnInit, OnChanges {
 
   setMensaje(): void {
     this.htmlElement.nativeElement.innerHTML = this._mensaje;
+  }
+
+  private highlight(color: string) {
+    this.htmlElement.nativeElement.style.backgroundColor = color;
   }
 
 }
