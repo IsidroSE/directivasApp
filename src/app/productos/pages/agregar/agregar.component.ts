@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AgregarComponent implements OnInit {
 
   errorMSg: string = "El campo es obligatorio."
+  color: string = 'orange';
 
   form: FormGroup = this.fb.group({
     nombre: [ '', Validators.required ]
@@ -23,6 +24,14 @@ export class AgregarComponent implements OnInit {
 
   tieneError( campo: string): boolean {
     return this.form.get(campo)?.invalid || false;
+  }
+
+  cambiarNombre() {
+    this.errorMSg += '!!';
+  }
+
+  cambiarColor() {
+    this.color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
   }
 
 }

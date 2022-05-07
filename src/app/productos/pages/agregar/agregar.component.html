@@ -14,12 +14,11 @@
         </div>
 
         <div class="col-auto">
-            <span 
-                *ngIf="tieneError('nombre')" 
+            <span  
                 error-msg 
-                color="pink"
-                mensaje="un error de prueba">
-                Este campo es requerido
+                [color]="color"
+                [mensaje]="errorMSg"
+                [valido]="tieneError('nombre')">
             </span>
         </div>
 
@@ -27,8 +26,16 @@
 
     <div class="row mt-3">
         <div class="col">
-            <button class="btn btn-primary">
-                Guardar
+            <button 
+                class="btn btn-primary" 
+                (click)="cambiarNombre()">
+                Cambiar nombre
+            </button>
+            &nbsp;
+            <button 
+                class="btn btn-primary" 
+                (click)="cambiarColor()">
+                Cambiar color
             </button>
         </div>
     </div>

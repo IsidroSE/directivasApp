@@ -1,34 +1,66 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[error-msg]'
 })
-export class ErrMsgDirective implements OnInit {
+export class ErrMsgDirective implements OnInit, OnChanges {
+
+  private _color: string = 'red';
+  private _mensaje: string = 'Placeholder';
 
   htmlElement: ElementRef<HTMLElement>;
 
-  @Input()
-  color: string = "red";
+  @Input() set color( newColor: string) {
+    this._color = newColor;
+    this.setColor();
+  };
 
-  @Input()
-  mensaje: string = "Placeholder";
+  // @Input() mensaje: string = "Placeholder";
+  @Input() set mensaje( valor: string ) {
+    this._mensaje = valor;
+    this.setMensaje();
+  }
+
+  @Input() set valido( valor: boolean ) {
+    if ( !valor ) {
+      this.htmlElement.nativeElement.classList.add('hidden');
+    }
+    else {
+      this.htmlElement.nativeElement.classList.remove('hidden');
+    }
+  }
 
   constructor( private elemento: ElementRef<HTMLElement> ) {
     this.htmlElement = elemento;
   }
 
+  /* Esto no es optimo porque cambia cada vez que cambia alguno de los inputs y 
+  habria que hacer if/else para controlar cada caso */
+  ngOnChanges(changes: SimpleChanges): void {
+    //this.setMensaje();
+    //this.setColor();
+
+    //if ( changes['mensaje'] ) {
+      //cambiar color
+    //}
+  }
+
   ngOnInit(): void {
     this.setColor();
     this.setMensaje();
+    this.setEstilo();
   }
 
-  setColor(): void {
-    this.htmlElement.nativeElement.style.color = this.color;
+  setEstilo(): void {
     this.htmlElement.nativeElement.classList.add('form-text');
   }
 
+  setColor(): void {
+    this.htmlElement.nativeElement.style.color = this._color;
+  }
+
   setMensaje(): void {
-    this.htmlElement.nativeElement.innerHTML = this.mensaje;
+    this.htmlElement.nativeElement.innerHTML = this._mensaje;
   }
 
 }
