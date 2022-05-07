@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { ErrMsgDirective } from './directives/err-msg.directive';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    SharedRoutingModule
+  declarations: [
+    ErrMsgDirective
+  ],
+  exports: [
+    ErrMsgDirective
   ]
 })
 export class SharedModule { }
