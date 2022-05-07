@@ -45,3 +45,13 @@
 <h3 class="mt-5">Formulario</h3>
 <pre>Value: {{ form.value | json }}</pre>
 <pre>Valid: {{ form.valid }}</pre>
+
+<div 
+    class="row mt-5" 
+    *customIf="!tieneError('nombre')">
+    <div class="col">
+        <div class="alert alert-primary">
+            Todo OK!
+        </div>
+    </div>
+</div>

@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { ErrMsgDirective } from './directives/err-msg.directive';
+import { CustomIfDirective } from './directives/custom-if.directive';
 
 
 @NgModule({
   declarations: [
-    ErrMsgDirective
+    ErrMsgDirective,
+    CustomIfDirective
   ],
   exports: [
-    ErrMsgDirective
+    ErrMsgDirective,
+    CustomIfDirective
   ]
 })
 export class SharedModule { }
